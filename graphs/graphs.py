@@ -106,27 +106,35 @@ class graph:
     #print all the vertices in the graph 
     def print_vertices(self):
         for v in self.vertices.keys():
-            print v, self.vertices[v]
+            print v, self.vertices[v].get_neighbours()
 
    #---------------------------------------------# 
-def make_graph(g):
-    for i in range(0,7):
-        g.add_vertex(i)
- 
-
-    g.add_edge(0,1,5)
-    g.add_edge(0,2,5)
-    g.add_edge(1,3,4)
-    g.add_edge(3,4,1)
-    g.add_edge(4,2,2)
-    g.add_edge(5,6,3)
-    g.add_edge(6,6,2)
 
 
-    print g.get_edge_value(4,2)
-    g.set_edge_value(4,2,22)
-    print g.get_edge_value(4,2)
+def make_graph(g, d):
+    #add vertecies
+    for k in d.keys():
+        g.add_vertex(k)
+    
+    #add edges
+    for k in d.keys():
+        for v in d[k]:
+            g.add_edge(k, v)
+    
+    g.print_vertices()
+    return g
+
 if __name__ == '__main__':
 
     g = graph()
-    make_graph(g)
+    d = {
+            1:[2,3,7],
+            2:[1,3,7],
+            3:[1,2,4,5,6],
+            4:[3,5,6],
+            5:[3,4,6],
+            6:[3,4,5,7],
+            7:[1,2,6]
+
+            }
+    make_graph(g, d)
