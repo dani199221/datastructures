@@ -139,7 +139,25 @@ class link_list:
             tmp = tmp.next
 
         return contains
+    
+
+    def __str__(self):
+        tmp = self.head
+        res = []
+        while tmp != None:
+            res.append(tmp.val)
+            tmp = tmp.next
+        
+        return " ".join([str(r) for r in res]) 
 
 if __name__ == '__main__':
     l = link_list()
+    
+    for i in range(10,-1,-1):
+        l.insert_at_head(i)
+
+    print l
+
+    for i in range(10,-1,-1):
+        l.delete_head()
 
