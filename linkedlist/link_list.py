@@ -141,4 +141,5 @@ class link_list:
         return contains
 
 if __name__ == '__main__':
+    l = link_list()
 
