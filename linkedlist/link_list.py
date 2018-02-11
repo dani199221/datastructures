@@ -128,7 +128,17 @@ class link_list:
 
         return size
 
+    def __contains__(self, val):
+        tmp = self.head
+        
+        contains = False
+        while (tmp != None):
+            if tmp.val == val:
+                contains = True
 
+            tmp = tmp.next
+
+        return contains
 
 if __name__ == '__main__':
 
