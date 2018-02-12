@@ -110,6 +110,39 @@ class graph:
 
    #---------------------------------------------# 
 
+def bfs(g, node):
+    queue = [] 
+    visited = []
+    queue.append(node)
+
+    while len(queue) != 0:
+        res = queue.pop(0)
+        visited.append(res)
+        print res
+        neighbours =  g.get_neighbours(res)
+        for n in neighbours:
+            if n  in visited:
+                continue
+
+            if n not in queue: 
+                queue.append(n)
+
+def dfs(g, node):
+    queue = [] 
+    visited = []
+    queue.append(node)
+
+    while len(queue) != 0:
+        res = queue.pop()
+        visited.append(res)
+        neighbours =  g.get_neighbours(res)
+        for n in neighbours:
+            if n  in visited:
+                continue
+
+            if n not in queue: 
+                queue.append(n)
+        print res
 
 def make_graph(g, d):
     #add vertecies
@@ -121,7 +154,7 @@ def make_graph(g, d):
         for v in d[k]:
             g.add_edge(k, v)
     
-    g.print_vertices()
+    #g.print_vertices()
     return g
 
 if __name__ == '__main__':
@@ -138,3 +171,4 @@ if __name__ == '__main__':
 
             }
     make_graph(g, d)
+    dfs(g, 2)
