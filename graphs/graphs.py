@@ -6,6 +6,10 @@
 #
 # Distributed under terms of the MIT license.
 
+
+
+##readup doc string to make this more friendly
+
 from vertex import *
 
 class graph:
@@ -110,52 +114,18 @@ class graph:
 
    #---------------------------------------------# 
 
-def bfs(g, node):
-    queue = [] 
-    visited = []
-    queue.append(node)
 
-    while len(queue) != 0:
-        res = queue.pop(0)
-        visited.append(res)
-        print res
-        neighbours =  g.get_neighbours(res)
-        for n in neighbours:
-            if n  in visited:
-                continue
 
-            if n not in queue: 
-                queue.append(n)
-
-def dfs(g, node):
-    queue = [] 
-    visited = []
-    queue.append(node)
-
-    while len(queue) != 0:
-        res = queue.pop()
-        visited.append(res)
-        neighbours =  g.get_neighbours(res)
-        for n in neighbours:
-            if n  in visited:
-                continue
-
-            if n not in queue: 
-                queue.append(n)
-        print res
-
-def make_graph(g, d):
-    #add vertecies
-    for k in d.keys():
-        g.add_vertex(k)
-    
-    #add edges
-    for k in d.keys():
-        for v in d[k]:
-            g.add_edge(k, v)
-    
-    #g.print_vertices()
-    return g
+    def make_graph(self, d):
+        #add vertecies
+        for k in d.keys():
+            self.add_vertex(k)
+        
+        #add edges
+        for k in d.keys():
+            for v in d[k]:
+                self.add_edge(k, v)
+        
 
 if __name__ == '__main__':
 
@@ -170,5 +140,4 @@ if __name__ == '__main__':
             7:[1,2,6]
 
             }
-    make_graph(g, d)
-    dfs(g, 2)
+    g.make_graph( d)
