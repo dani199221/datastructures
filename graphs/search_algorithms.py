@@ -46,31 +46,42 @@ def dfs(g, node):
             if n not in queue: 
                 queue.append(n)
 
-def make_graph(g, d):
-    #add vertecies
-    for k in d.keys():
-        g.add_vertex(k)
+#------------------find connected components in a graph----------------#
+#dfs over an individual node and its neighbouts
+def dfs_individual(g, u , visited):
+    for n in g.get_neighbours(u):
+        if n not in visited:
+            visited.append(n)
+            dfs_individual(g, n, visited)
     
-    #add edges
-    for k in d.keys():
-        for v in d[k]:
-            g.add_edge(k, v)
+
+#dfs over all the nodes to find connected components
+def dfs_all_nodes(g):
     
-    #g.print_vertices()
-    return g
+    connected = 0
+    visited = []
+    for n in g.get_all_vertices():
+        if n not in visited:
+            dfs_individual(g, n, visited)
+            connected += 1
+
+    return connected
+#----------------------------------------------------------------------#
+
 
 if __name__ == '__main__':
 
     g = graph()
     d = {
-            1:[2,3,7],
-            2:[1,3,7],
-            3:[1,2,4,5,6],
-            4:[3,5,6],
-            5:[3,4,6],
-            6:[3,4,5,7],
-            7:[1,2,6]
+            0:[1,2],
+            1:[0,3],
+            2:[0,3],
+            3:[1,2],
+            5:[6],
+            6:[5,7],
+            8:[],
+            9:[]
 
-            }
+        }
     g.make_graph(d)
-    dfs(g, 2)
+    print  dfs_all_nodes(g)
