@@ -150,14 +150,66 @@ class link_list:
         
         return " ".join([str(r) for r in res]) 
 
-if __name__ == '__main__':
-    l = link_list()
     
-    for i in range(10,-1,-1):
-        l.insert_at_head(i)
+    #instead of moving one pointer twice and other once
+    #have it the way that you just move the slow pty
+    #every other iteration
+    def insert_middle(self, val):
+        fast = self.head
+        slow = self.head
+        tick = False
+        
+        while fast:
+            fast = fast.next
+            if tick:
+                slow = slow.next
+            tick = not tick
 
-    print l
+        tmp = Node(slow.val)
+        tmp.next = slow.next
+        slow.next = tmp
+        slow.val = val
 
-    for i in range(10,-1,-1):
-        l.delete_head()
+    def insert_sorted(self, val):
+        tmp = self.head
 
+        while tmp.next != None and tmp.next.val < val:
+            tmp = tmp.next
+
+        res = Node(val)
+        res.next = tmp.next
+        tmp.next = res
+        return True
+
+    def compare_str(self, s1, s2):
+        if not s1 and not s2:
+            return True
+
+        if (s1 == None and s2 != None) or (s2 == None and s1 != None):
+            return False
+
+        if s1.val == s2.val:
+            return self.compare_str(s1.next, s2.next)
+        else:
+            return False
+if __name__ == '__main__':
+
+    l = link_list()
+    l.head = Node('g')
+    l.head.next = Node('e')
+    l.head.next.next = Node('e')
+    l.head.next.next.next = Node('k')
+    l.head.next.next.next.next = Node('s')
+    
+    l2 = link_list()
+    l2.head = Node('g')
+    l2.head.next = Node('e')
+    l2.head.next.next = Node('e')
+    l2.head.next.next.next = Node('k')
+    l2.head.next.next.next.next = Node('s')
+    #for i in range(10,0,-1):
+    #    l.insert_at_head(i)
+    
+    print l.compare_str(l.head, l2.head)
+    #l.insert_sorted(5)
+    #print l
