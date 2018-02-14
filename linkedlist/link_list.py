@@ -195,21 +195,8 @@ class link_list:
 if __name__ == '__main__':
 
     l = link_list()
-    l.head = Node('g')
-    l.head.next = Node('e')
-    l.head.next.next = Node('e')
-    l.head.next.next.next = Node('k')
-    l.head.next.next.next.next = Node('s')
+    for i in range(10,0,-1):
+        l.insert_at_head(i)
     
-    l2 = link_list()
-    l2.head = Node('g')
-    l2.head.next = Node('e')
-    l2.head.next.next = Node('e')
-    l2.head.next.next.next = Node('k')
-    l2.head.next.next.next.next = Node('s')
-    #for i in range(10,0,-1):
-    #    l.insert_at_head(i)
-    
-    print l.compare_str(l.head, l2.head)
-    #l.insert_sorted(5)
-    #print l
+    l.insert_sorted(5)
+    print l
